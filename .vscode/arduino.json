@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:uno",
+    "port": "COM5",
+    "sketch": "Automated Robot Drive.ino",
+    "programmer": "avrisp"
+}
