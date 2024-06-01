@@ -42,6 +42,24 @@ void loop() {
         String motor = receivedData.substring(0, 2);
         String direction = receivedData.substring(3, 5);
         int speed = receivedData.substring(6).toInt();
+
+        if (motor == "rm") {
+            if (direction == "cl") {
+                motorR(true, speed);
+            }
+            else if (direction == "cc") {
+                motorR(false, speed);
+            }
+        }
+
+        else if (motor == "lm") {
+            if (direction == "cl") {
+                motorL(true, speed);
+            }
+            else if (direction == "cc") {
+                motorL(false, speed);
+            }
+        }
+
     }
-    
 }
