@@ -39,6 +39,9 @@ void loop() {
     if (Serial.available()) {
         String receivedData = Serial.readStringUntil('\n');
         Serial.println(receivedData); // rm cl 100
+        String motor = receivedData.substring(0, 2);
+        String direction = receivedData.substring(3, 5);
+        int speed = receivedData.substring(6).toInt();
     }
     
 }
