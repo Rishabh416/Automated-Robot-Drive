@@ -6,11 +6,19 @@ int left1 = 2;
 int left2 = 3;
 int leftS = 9;
 
-void motor(bool direction, int speed) {
+void motorR(bool direction, int speed) {
     float calcSpeed = map(speed, 0, 100, 0, 255);
     digitalWrite(right1, direction);
     digitalWrite(right2, !direction);
     analogWrite(rightS, calcSpeed);
+
+}
+
+void motorL(bool direction, int speed) {
+    float calcSpeed = map(speed, 0, 100, 0, 255);
+    digitalWrite(left1, direction);
+    digitalWrite(left2, !direction);
+    analogWrite(leftS, calcSpeed);
 
 }
 
@@ -23,10 +31,14 @@ void setup() {
     pinMode(left2, OUTPUT);
     pinMode(leftS, OUTPUT);
     Serial.println("hello world");
+    Serial.begin(9600);
 
 }
 
 void loop() {
-    motor(true,25);
+    if (Serial.available()) {
+        String receivedData = Serial.readStringUntil('\n');
+        Serial.println(receivedData); // rm cl 100
+    }
     
 }
