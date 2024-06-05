@@ -12,8 +12,9 @@ cap = cv2.VideoCapture(0)
 while True: 
     frame = picam2.capture_array()
     gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-    blur = cv2.GaussianBlur(gray, (5,5), 0)
-    cv2.imshow("Video Output", blur)
+    blur = cv2.GaussianBlur(gray, (13,13), 0)
+    edges = cv2.Canny(blur, 85, 100)
+    cv2.imshow("Video Output", edges)
     cv2.waitKey(1)
 
 cap.release()
