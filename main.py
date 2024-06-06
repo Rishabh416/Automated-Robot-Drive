@@ -14,13 +14,15 @@ while True:
     image = cv2.rotate(frame, cv2.ROTATE_180)
     cropped = image[320:480,0:640]
     gray = cv2.cvtColor(cropped, cv2.COLOR_RGB2GRAY)
-    blur = cv2.GaussianBlur(gray, (7,7), 0)
-    edges = cv2.Canny(blur, 50, 100)
-    lines = cv2.HoughLinesP(edges,1,0.01745,100,minLineLength=100,maxLineGap=10)
-    for line in lines:
-        x1,y1,x2,y2 = line[0]
-        cv2.line(blur,(x1,y1),(x2,y2),(0,255,0),2)
-    cv2.imshow("Video Output", blur)
+    blur = cv2.GaussianBlur(gray, (13,13), 0)
+    edges = cv2.Canny(blur, 70, 100)
+    lines = cv2.HoughLinesP(edges,1,0.01745,100,minLineLength=20,maxLineGap=25)
+    if lines is not None:
+        for line in lines:
+            x1,y1,x2,y2 = line[0]
+            cv2.line(cropped,(x1,y1),(x2,y2),(0,0,255),2)
+    cv2.imshow("edges", edges)
+    cv2.imshow("Video Output", cropped)
     cv2.waitKey(1)
 
 cap.release()
