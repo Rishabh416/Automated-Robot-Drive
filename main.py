@@ -15,7 +15,8 @@ while True:
     cropped = image[320:480,0:640]
     gray = cv2.cvtColor(cropped, cv2.COLOR_RGB2GRAY)
     blur = cv2.GaussianBlur(gray, (13,13), 0)
-    edges = cv2.Canny(blur, 70, 100)
+    equalizedImage = cv2.equalizeHist(blur)
+    edges = cv2.Canny(equalizedImage, 70, 100)
     lines = cv2.HoughLinesP(edges,1,0.01745,100,minLineLength=20,maxLineGap=25)
     if lines is not None:
         for line in lines:
