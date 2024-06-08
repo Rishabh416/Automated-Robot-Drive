@@ -7,8 +7,6 @@ picam2 = Picamera2()
 picam2.configure(picam2.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
 picam2.start()
 
-cap = cv2.VideoCapture(0)
-
 while True: 
     frame = picam2.capture_array()
     image = cv2.rotate(frame, cv2.ROTATE_180)
