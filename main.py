@@ -5,6 +5,11 @@ import uvicorn
 from picamera2 import Picamera2  
 import cv2 
 import time 
+import serial
+
+serialConnection = serial.Serial('COM1', 9600)
+serialConnection.open()
+serialConnection.write("connected")
 
 app = FastAPI()
 
@@ -19,7 +24,7 @@ app.add_middleware(
 cam = Picamera2()
 config = cam.create_preview_configuration(main={"size": (640, 480)})
 cam.configure(config)  
-cam.start()  
+cam.start()
 
 def generate_frames():
     while True:  
