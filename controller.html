@@ -11,31 +11,35 @@
         function photo() {
             fetch("http://localhost:8000/takeImage")
         }
-        function forward() {
-            fetch("http://localhost:8000/forward")
+
+        function leftMotor() {
+            let leftSpeed = document.getElementById("leftMotor").value
+            fetch("http://localhost:8080/leftMotor", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({value: leftSpeed})
+            });
         }
-        function backward() {
-            fetch("http://localhost:8000/backward")
-        }
-        function right() {
-            fetch("http://localhost:8000/right")
-        }
-        function left() {
-            fetch("http://localhost:8000/left")
-        }
-        function stop() {
-            fetch("http://localhost:8000/stop")
+
+        function rightMotor() {
+            let rightSpeed = document.getElementById("rightMotor").value
+            fetch("http://localhost:8080/rightMotor", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({value: rightSpeed})
+            });
         }
     </script>
 
     <div id="container">
         <iframe src="http://localhost:8000/videoFeed" frameborder="0"></iframe>
         
-        <div id="controller">
-            <div><button></button><button onclick="forward()">Forward</button><button></button></div>
-            <div><button onclick="left()">Left</button><button onclick="stop()">Stop</button><button onclick="right()">Right</button></div>
-            <div><button onclick="photo()">Photo</button><button onclick="backward()">Backward</button><button></button></div>
-        </div>
+        <input type="range" name="leftMotor" id="leftMotor" min="-100" max="100" value="0" onchange="leftMotor()">
+        <input type="range" name="rightMotor" id="rightMotor" min="-100" max="100" value="0" onchange="rightMotor()">
     </div>
 
 </body>

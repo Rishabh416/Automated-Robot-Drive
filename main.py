@@ -38,30 +38,17 @@ def generate_frames():
 async def videoFeed():
     return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
 
-@app.get("/takeImage")
 async def takeImage():
     cam.capture_file(f"{time.time()}.jpg")
     return("captured")
 
-@app.get("/forward")
-async def forward():
-    pass
+@app.post("/leftMotor")
+async def leftMotor(data: int):
+    print(data.value)
 
-@app.get("/backward")
-async def forward():
-    pass
-
-@app.get("/right")
-async def forward():
-    pass
-
-@app.get("/left")
-async def forward():
-    pass
-
-@app.get("/stop")
-async def forward():
-    pass
+@app.post("/rightMotor")
+async def rightMotor(data: int):
+    print(data.value)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
