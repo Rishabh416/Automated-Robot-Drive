@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controller</title>
+</head>
+<body>
+    
+    <script>
+        function photo() {
+            fetch("http://localhost:8000/takeImage")
+        }
+        function forward() {
+            fetch("http://localhost:8000/forward")
+        }
+        function backward() {
+            fetch("http://localhost:8000/backward")
+        }
+        function right() {
+            fetch("http://localhost:8000/right")
+        }
+        function left() {
+            fetch("http://localhost:8000/left")
+        }
+        function stop() {
+            fetch("http://localhost:8000/stop")
+        }
+    </script>
+
+    <div id="container">
+        <iframe src="http://localhost:8000/videoFeed" frameborder="0"></iframe>
+        
+        <div id="controller">
+            <div><button></button><button onclick="forward()">Forward</button><button></button></div>
+            <div><button onclick="left()">Left</button><button onclick="stop()">Stop</button><button onclick="right()">Right</button></div>
+            <div><button onclick="photo()">Photo</button><button onclick="backward()">Backward</button><button></button></div>
+        </div>
+    </div>
+
+</body>
+</html>
